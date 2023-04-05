@@ -1,7 +1,7 @@
-from src.infra.database import SessionLocal
+from src.infra.database.base import SessionLocal
 
 
-def get_db():
+def get_db() -> SessionLocal:
     db = SessionLocal()
     try:
         yield db

@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from src.infra.database import Base
+from src.infra.database.base import Base
 
 
 class RolesModel(Base):
