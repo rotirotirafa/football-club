@@ -8,7 +8,7 @@ Create Date: 2023-04-03 16:14:17.621077
 from alembic import op
 import sqlalchemy as sa
 
-from src.models.roles import Roles
+from src.domain.v1.roles.model import RolesModel
 
 
 # revision identifiers, used by Alembic.
@@ -20,7 +20,7 @@ depends_on = None
 
 def upgrade() -> None:
     op.create_table(
-        Roles.__tablename__,
+        RolesModel.__tablename__,
         sa.Column("role_id", sa.Integer, primary_key=True),
         sa.Column("name", sa.String(45), nullable=False)
     )
@@ -28,4 +28,4 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    op.drop_table(Roles.__tablename__)
+    op.drop_table(RolesModel.__tablename__)

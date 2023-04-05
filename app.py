@@ -1,24 +1,10 @@
 from fastapi import FastAPI
-from sqlalchemy.orm import Session
-from src.models.roles import Roles
-from src.database import SessionLocal, engine
-from src.routes import team
-from typing import Any
-from fastapi import Depends
-from src.models.roles import Roles as RolesModel
 
-Roles.metadata.create_all(bind=engine)
+from src.infra.routes.v1 import roles
 
-app = FastAPI() # Colocar as documentações
-app.include_router(team.team_routes)
+app = FastAPI()
+app.include_router(roles.RolesRoute)
 
-# Dependency
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 @app.get("/health")
 async def get_health() -> dict:
@@ -29,8 +15,3 @@ async def get_health() -> dict:
         'Application:': 'Status is up',
         'Networking': '0.99 ms latency'
     }
-    
-@app.get('/roles')
-def get_roles(db: Session = Depends(get_db)) -> Any:
-    roles = db.query(RolesModel).all()
-    yield roles
