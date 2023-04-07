@@ -1,3 +1,5 @@
+from typing import List
+
 from sqlalchemy.orm import Session
 
 from src.domain.v1.roles.model import RolesModel
@@ -11,10 +13,11 @@ class RolesRepository:
     def __init__(self, db: Session) -> None:
         self.db = db
 
-    def get_one(self):
-        pass
+    def get_one(self, role_id: int):
+        response = self.db.query(RolesModel).get(role_id)
+        return response
 
-    def get_all(self):
+    def get_all(self) -> List[RolesModel] or List:
         response = self.db.query(RolesModel).all()
         return response
 
@@ -30,5 +33,7 @@ class RolesRepository:
     def update(self):
         pass
 
-    def delete(self):
-        pass
+    def delete(self, role_id: int):
+        self.db.query(RolesModel).filter_by(role_id=role_id).delete()
+        self.db.commit()
+        return

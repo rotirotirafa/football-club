@@ -16,20 +16,12 @@ RolesRoute = APIRouter(
 
 @RolesRoute.get('/', response_model=List[RoleSchema])
 def get_roles(db: Session = Depends(get_db)) -> List[RoleSchema]:
-    """
-    db = Sessão do Banco de Dados
-    response = [{"id": x, "name": "xpto"}, ...]
-    """
     roles_use_case = RolesUseCase(db)
     response = roles_use_case.get_all_roles()
     return response
 
 
-@RolesRoute.get('/{role_id}')
-def get_role(role_id: int) -> ORJSONResponse:
-    return ORJSONResponse(role_id)
-
-
+# TODO retornar mensagem
 @RolesRoute.post('/', response_model=RoleSchema)
 def post_role(role: RoleSchema, db: Session = Depends(get_db)) -> Any:
     roles_use_case = RolesUseCase(db)
@@ -37,11 +29,20 @@ def post_role(role: RoleSchema, db: Session = Depends(get_db)) -> Any:
     return response
 
 
-@RolesRoute.put('/')
+@RolesRoute.get('/{role_id}', response_model=RoleSchema)
+def get_role(role_id: int, db: Session = Depends(get_db)) -> RoleSchema:
+    roles_use_case = RolesUseCase(db)
+    response = roles_use_case.get_specific_role(role_id)
+    return response
+
+
+@RolesRoute.put('/{role_id}')
 def put_role():
     pass
 
 
-@RolesRoute.delete('/')
-def delete_role():
-    pass
+@RolesRoute.delete('/{role_id}')
+def delete_role(role_id: int, db: Session = Depends(get_db)) -> ORJSONResponse:
+    roles_use_case = RolesUseCase(db)
+    roles_use_case.delete_role(role_id)
+    return ORJSONResponse({'message': 'Deletado com sucesso'})
