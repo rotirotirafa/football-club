@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import ORJSONResponse
 from sqlalchemy.orm import Session
 
-from src.domain.v1.roles.schema import RoleSchema
+from src.domain.v1.roles.schema import RoleSchema, RoleUpdateSchemaRequest
 from src.domain.v1.usecases.roles import RolesUseCase
 from src.infra.database.make_session import get_db
 
@@ -36,9 +36,11 @@ def get_role(role_id: int, db: Session = Depends(get_db)) -> RoleSchema:
     return response
 
 
-@RolesRoute.put('/{role_id}')
-def put_role():
-    pass
+@RolesRoute.put('/{role_id}', response_model=RoleSchema)
+def put_role(role_id: int, payload: RoleUpdateSchemaRequest, db: Session = Depends(get_db)) -> RoleSchema:
+    roles_use_case = RolesUseCase(db)
+    response = roles_use_case.update_specific_role(role_id, payload)
+    return response
 
 
 @RolesRoute.delete('/{role_id}')

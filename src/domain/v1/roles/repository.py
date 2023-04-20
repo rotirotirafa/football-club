@@ -3,7 +3,7 @@ from typing import List
 from sqlalchemy.orm import Session
 
 from src.domain.v1.roles.model import RolesModel
-from src.domain.v1.roles.schema import RoleSchema
+from src.domain.v1.roles.schema import RoleSchema, RoleUpdateSchemaRequest
 
 
 class RolesRepository:
@@ -30,8 +30,11 @@ class RolesRepository:
         self.db.refresh(create_object)
         return create_object
 
-    def update(self):
-        pass
+    def update(self, role_id: int,  role: RoleUpdateSchemaRequest) -> RoleSchema:
+        old_object = self.db.query(RolesModel).filter_by(role_id=role_id)
+        old_object.update({"name": role.name})
+        self.db.commit()
+        return self.db.query(RolesModel).get(role_id)
 
     def delete(self, role_id: int):
         self.db.query(RolesModel).filter_by(role_id=role_id).delete()

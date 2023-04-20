@@ -8,3 +8,7 @@ class RoleSchema(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class RoleUpdateSchemaRequest(BaseModel):
+    name: str

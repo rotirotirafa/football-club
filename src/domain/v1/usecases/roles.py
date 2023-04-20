@@ -21,8 +21,8 @@ class RolesUseCase:
     def get_specific_role(self, role_id: int):
         return self.repository.get_one(role_id)
 
-    def update_specific_role(self):
-        pass
+    def update_specific_role(self, role_id: int, payload):
+        return self.repository.update(role_id, payload)
 
     def create_role(self, role: RoleSchema):
         return self.repository.insert(role)
