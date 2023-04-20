@@ -21,7 +21,6 @@ def get_roles(db: Session = Depends(get_db)) -> List[RoleSchema]:
     return response
 
 
-# TODO retornar mensagem
 @RolesRoute.post('/', response_model=RoleSchema)
 def post_role(role: RoleSchema, db: Session = Depends(get_db)) -> Any:
     roles_use_case = RolesUseCase(db)
