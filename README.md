@@ -3,6 +3,7 @@
 É uma api que consiste em fornecer uma solução back-end para quem queira gerir sua equipe ou time de futebol.
 
 ### Features atuais:
+
 - Auth (JWT)
 - Cargos (Administrador, Usuário)
 - Usuários
@@ -19,13 +20,17 @@
 ![Proposta de tabelas](/football-club-db.png)
 
 ## Run
+
 ```
-uvicorn app:app --host 0.0.0.0 --port 80 
+uvicorn main:app --host 0.0.0.0 --port 80
 ```
 
 ## Alembic
 
-- Criar uma revision -> ``alembic revision -m "criar" ``
-- Efetivar comando de criar -> `` alembic upgrade head ``
-- Rollback -> ``alembic downgrade -1``
+- Criar uma revision -> `alembic revision -m "criar" `
+- Efetivar comando de criar -> `alembic upgrade head`
+- Rollback -> `alembic downgrade -1`
 
+// como rodar app
+
+// descricao variaveis ambiente

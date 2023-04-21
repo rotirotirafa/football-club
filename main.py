@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 
-from src.infra.routes.v1 import roles
+from src.entrypoints.routes.v1 import role
 
 app = FastAPI()
-app.include_router(roles.RolesRoute)
+app.include_router(role.RolesRoute)
 
 
 @app.get("/health")

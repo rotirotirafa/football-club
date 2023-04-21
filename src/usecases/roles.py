@@ -11,21 +11,24 @@ class RolesUseCase:
     Try catch com exception personalizada
     """
 
-    def __init__(self, db_session: Session):
-        self.db = db_session
+    def __init__(self,):
+        self.db = get_db()
         self.repository = RolesRepository(self.db)
 
-    def get_all_roles(self):
+    async def get_all_roles(self):
+        async with session() as session:
+            items = await get_by_criteria(query, session)
+    
         return self.repository.get_all()
 
-    def get_specific_role(self, role_id: int):
+    async def get_specific_role(self, role_id: int):
         return self.repository.get_one(role_id)
 
-    def update_specific_role(self, role_id: int, payload):
+    async def update_specific_role(self, role_id: int, payload):
         return self.repository.update(role_id, payload)
 
-    def create_role(self, role: RoleSchema):
+    async def create_role(self, role: RoleSchema):
         return self.repository.insert(role)
 
-    def delete_role(self, role_id: int):
+    async def delete_role(self, role_id: int):
         return self.repository.delete(role_id)
