@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from src.domain.v1.roles.repository import RolesRepository
-from src.domain.v1.roles.schema import RoleSchema
+from src.infra.repositories.role import RolesRepository
+from src.schemas.role import RoleSchema
 
 
 class RolesUseCase:

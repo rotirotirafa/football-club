@@ -1,4 +1,4 @@
-from src.infra.database.base import SessionLocal
+from src.infra.adapters.database.base import SessionLocal
 
 
 def get_db() -> SessionLocal:

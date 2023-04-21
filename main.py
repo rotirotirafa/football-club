@@ -1,9 +1,15 @@
 from fastapi import FastAPI
 
-from src.infra.routes.v1 import roles
+from src.entrypoints.routes.v1 import roles
 
 app = FastAPI()
+
 app.include_router(roles.RolesRoute)
+
+
+@app.get("/")
+async def hello() -> dict:
+    return {"msg": "hello world"}
 
 
 @app.get("/health")

@@ -4,9 +4,9 @@ from fastapi import APIRouter, Depends
 from fastapi.responses import ORJSONResponse
 from sqlalchemy.orm import Session
 
-from src.domain.v1.roles.schema import RoleSchema, RoleUpdateSchemaRequest
-from src.domain.v1.usecases.roles import RolesUseCase
-from src.infra.database.make_session import get_db
+from src.infra.adapters.database.make_session import get_db
+from src.schemas.role import RoleSchema, RoleUpdateSchemaRequest
+from src.usecases.roles import RolesUseCase
 
 RolesRoute = APIRouter(
     prefix='/roles',
