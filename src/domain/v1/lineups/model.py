@@ -11,7 +11,7 @@ class LineUpsModel(Base):
 
     lineup_id = Column(Integer, primary_key=True, index=False)
 
-    match_id = Column(ForeignKey("matches.match_id"))
+    match_id = Column(ForeignKey("matches.match_id"), nullable=False)
 
     formation = Column(String(10))
 
