@@ -11,7 +11,7 @@ class CardsModel(Base):
 
     card_id = Column(Integer, primary_key=True, index=True)
 
-    match_id = Column(ForeignKey("matches.match_id"))
+    match_id = Column(ForeignKey("matches.match_id"), nullable=True)
 
     color = Column(String(1))  # Y or R
 
