@@ -11,9 +11,9 @@ class MatchesModel(Base):
 
     match_id = Column(Integer, primary_key=True, index=True)
 
-    team_home = Column(ForeignKey("teams.team_id"), nullable=False)
-    team_away = Column(ForeignKey("teams.team_id"), nullable=False)
-    tournaments = Column(ForeignKey("tournaments.tournament_id"), nullable=True)
+    team_home_id = Column(ForeignKey("teams.team_id"), nullable=False)
+    team_away_id = Column(ForeignKey("teams.team_id"), nullable=False)
+    tournament_id = Column(ForeignKey("tournaments.tournament_id"), nullable=True)
 
     created_date = Column(DateTime, default=datetime.now(), nullable=True)
     updated_date = Column(DateTime, default=datetime.now(), nullable=True)

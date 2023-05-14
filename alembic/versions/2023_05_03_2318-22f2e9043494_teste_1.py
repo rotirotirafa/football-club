@@ -90,7 +90,7 @@ def upgrade() -> None:
         sa.Column("player_id", sa.Integer, primary_key=True),
         sa.Column("user_id", sa.Integer, nullable=False),
         sa.Column("team_id", sa.Integer, nullable=True),
-        sa.Column("goals_id", sa.Integer, nullable=True),
+        sa.Column("goal_id", sa.Integer, nullable=True),
         sa.Column("nickname", sa.String(length=40)),
         sa.Column("status", sa.String(length=40)),
         sa.Column("image_url", sa.String(length=500)),
@@ -106,9 +106,9 @@ def upgrade() -> None:
     op.create_table(
         MatchesModel.__tablename__,
         sa.Column("match_id", sa.Integer, primary_key=True),
-        sa.Column("team_home", sa.Integer, nullable=False),
-        sa.Column("team_away", sa.Integer, nullable=False),
-        sa.Column("tournaments", sa.Integer, nullable=True),
+        sa.Column("team_home_id", sa.Integer, nullable=False),
+        sa.Column("team_away_id", sa.Integer, nullable=False),
+        sa.Column("tournament_id", sa.Integer, nullable=True),
         sa.Column("created_date", sa.DateTime, default=datetime.now(), nullable=True),
         sa.Column("updated_date", sa.DateTime, default=datetime.now(), nullable=True)
     )
@@ -168,8 +168,111 @@ def upgrade() -> None:
         ['user_id'], ['role_id'],
     )
 
+    op.create_foreign_key(
+        'fk_users_player',
+        'players', 'users',
+        ['user_id'], ['user_id']
+    )
+
+    op.create_foreign_key(
+        'fk_team_player',
+        'players', 'teams',
+        ['team_id'], ['team_id']
+    )
+
+    op.create_foreign_key(
+        'fk_goals_player',
+        'players', 'goals',
+        ['goal_id'], ['goal_id']
+    )
+
+    op.create_foreign_key(
+        'fk_team_home_match',
+        'matches', 'teams',
+        ['team_home_id'], ['team_id']
+    )
+
+    op.create_foreign_key(
+        'fk_team_away_match',
+        'matches', 'teams',
+        ['team_away_id'], ['team_id']
+    )
+
+    op.create_foreign_key(
+        'fk_tournament_match',
+        'matches', 'tournaments',
+        ['tournament_id'], ['tournament_id']
+    )
+
+    op.create_foreign_key(
+        'fk_match_assists',
+        'assists', 'matches',
+        ['match_id'], ['match_id']
+    )
+
+    op.create_foreign_key(
+        'fk_player_assists',
+        'assists', 'players',
+        ['player_id'], ['player_id']
+    )
+
+    op.create_foreign_key(
+        'fk_player_goals',
+        'goals', 'players',
+        ['player_id'], ['player_id']
+    )
+
+    op.create_foreign_key(
+        'fk_match_goals',
+        'goals', 'matches',
+        ['match_id'], ['match_id']
+    )
+
+    op.create_foreign_key(
+        'fk_match_lineup',
+        'lineups', 'matches',
+        ['match_id'], ['match_id']
+    )
+
+    op.create_foreign_key(
+        'fk_lineup_starts',
+        'lineup_starts', 'lineups',
+        ['lineup_id'], ['lineup_id']
+    )
+
+    op.create_foreign_key(
+        'fk_player_in_lineup_start',
+        'lineup_starts', 'players',
+        ['player_id'], ['player_id']
+    )
+
 
 def downgrade() -> None:
+    # FK Players
+    op.drop_constraint('fk_goals_player', 'players', type_='foreignkey')
+    op.drop_constraint('fk_team_player', 'players', type_='foreignkey')
+    op.drop_constraint('fk_users_player', 'players', type_='foreignkey')
+    # Users
+    op.drop_constraint('fk_users_role', 'users', type_='foreignkey')
+    # FK Matches
+    op.drop_constraint('fk_team_home_match', 'matches', type_='foreignkey')
+    op.drop_constraint('fk_team_away_match', 'matches', type_='foreignkey')
+    op.drop_constraint('fk_tournament_match', 'matches', type_='foreignkey')
+    # FK Assists
+    op.drop_constraint('fk_match_assists', 'assists', type_='foreignkey')
+    op.drop_constraint('fk_player_assists', 'assists', type_='foreignkey')
+    # FK Goals
+    op.drop_constraint('fk_player_goals', 'goals', type_='foreignkey')
+    op.drop_constraint('fk_match_goals', 'goals', type_='foreignkey')
+    # FK Lineup
+    op.drop_constraint('fk_match_lineup', 'lineups', type_='foreignkey')
+    # FK Lineup Starts
+    op.drop_constraint('fk_lineup_starts', 'lineup_starts', type_='foreignkey')
+    op.drop_constraint('fk_player_in_lineup_start', 'lineup_starts', type_='foreignkey')
+
+    op.drop_table(TournamentsModel.__tablename__)
+    op.drop_table(TeamsModel.__tablename__)
+
     op.drop_table(UsersModel.__tablename__)  # has Roles FK
     op.drop_table(PlayersModel.__tablename__)
     op.drop_table(MatchesModel.__tablename__)
@@ -179,5 +282,3 @@ def downgrade() -> None:
     op.drop_table(LineUpsModel.__tablename__)
     op.drop_table(LineUpStartsModel.__tablename__)
     op.drop_table(RolesModel.__tablename__)
-    op.drop_table(TeamsModel.__tablename__)
-    op.drop_table(TournamentsModel.__tablename__)
