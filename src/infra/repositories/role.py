@@ -32,7 +32,9 @@ class RolesRepository:
 
     def update(self, role_id: int,  role: RoleUpdateSchemaRequest) -> RoleSchema:
         old_object = self.db.query(RolesModel).filter_by(role_id=role_id)
-        old_object.update({"name": role.name})
+        old_object.update(
+            {"name": role.name}
+        )
         self.db.commit()
         return self.db.query(RolesModel).get(role_id)
 
