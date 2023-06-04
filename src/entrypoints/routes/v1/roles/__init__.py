@@ -10,8 +10,7 @@ from src.usecases.roles import RolesUseCase
 from src.utils.logs import Logs
 
 RolesRoute = APIRouter(
-    prefix='/roles',
-    tags=["Roles"],
+    prefix='/roles'
 )
 
 

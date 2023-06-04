@@ -1,7 +1,12 @@
 from datetime import datetime
 
+from sqlalchemy.orm import relationship
+
 from sqlalchemy import Column, Integer, String, DateTime, Text, Boolean, ForeignKey
 
+from src.domain.v1.goals.model import GoalsModel
+from src.domain.v1.teams.model import TeamsModel
+from src.domain.v1.users.model import UsersModel
 from src.infra.adapters.database.base import Base
 
 
@@ -25,3 +30,10 @@ class PlayersModel(Base):
     user_id = Column(ForeignKey("users.user_id"), nullable=False)
     team_id = Column(ForeignKey("teams.team_id"), nullable=True)
     goals_id = Column(ForeignKey("goals.goal_id"), nullable=True)
+
+    user = relationship(UsersModel, foreign_keys=[user_id])
+    teams = relationship(TeamsModel, foreign_keys=[team_id])
+    goals = relationship(GoalsModel, foreign_keys=[goals_id])
+
+
+
