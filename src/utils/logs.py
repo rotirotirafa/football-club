@@ -1,8 +1,11 @@
-import json
 import logging
 
 
 class Logs:
+
+    logging.basicConfig(filename='see.log', encoding='utf-8', level=logging.INFO)
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
 
     def __init__(self, code: int = None, message: str = None, exception: str = None):
         """
@@ -18,10 +21,10 @@ class Logs:
                           f" Exception: {self.exception}"
 
     def info(self):
-        logging.info(self.msg_format)
+        self.logger.info(self.msg_format)
 
     def warning(self):
-        logging.warning(self.msg_format)
+        self.logger.warning(self.msg_format)
 
     def error(self):
-        logging.error(self.msg_format)
+        self.logger.error(self.msg_format)
