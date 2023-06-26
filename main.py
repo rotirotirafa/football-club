@@ -9,6 +9,7 @@ from src.utils.logs import Logs
 
 logger = logging.getLogger(__name__)
 app = FastAPI()
+
 app.include_router(api_router)
 
 
