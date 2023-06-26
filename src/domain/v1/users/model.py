@@ -21,4 +21,4 @@ class UsersModel(Base):
 
     role_id = Column(ForeignKey("roles.role_id"), nullable=False)
 
-    user = relationship(RolesModel, foreign_keys=[role_id])
+    roles = relationship(RolesModel, foreign_keys=[role_id])
