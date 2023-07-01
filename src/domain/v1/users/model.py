@@ -11,8 +11,8 @@ class UsersModel(Base):
 
     user_id = Column(Integer, primary_key=True, index=True)
     name = Column(String(length=60), nullable=False)
-    email = Column(String(length=255), nullable=False)
-    phone = Column(String(length=15), nullable=False)
+    email = Column(String(length=255), nullable=False, unique=True)
+    phone = Column(String(length=15), nullable=False, unique=True)
     password = Column(Text, nullable=False)
     status = Column(String(length=30))
     active = Column(Boolean, default=True, nullable=False)

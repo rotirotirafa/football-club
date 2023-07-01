@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 from src.domain.v1.users.model import UsersModel
 from src.schemas.users import UsersSchema, UserSchemaUpdateRequest
+from src.utils.functions import hash_pw
 
 
 class UsersRepository:
@@ -32,12 +33,13 @@ class UsersRepository:
 
     def insert(self, user_payload: UsersSchema) -> UsersSchema:
         try:
+            password_hash = str(hash_pw(user_payload.password))
             create_object = UsersModel(
                 name=user_payload.name,
                 role_id=user_payload.role_id,
                 email=user_payload.email,
                 phone=user_payload.phone,
-                password=user_payload.password,#TODO criptografar
+                password=password_hash,
                 status=user_payload.status,
                 active=user_payload.active,
                 created_date=datetime.datetime.now(),

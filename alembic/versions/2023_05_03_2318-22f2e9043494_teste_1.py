@@ -36,17 +36,7 @@ def upgrade() -> None:
         sa.Column("role_id", sa.Integer, primary_key=True),
         sa.Column("name", sa.String(45), nullable=False)
     )
-
-    # op.bulk_insert(
-    #     RolesModel.__tablename__,
-    #     [
-    #         {"role_id": 1, "name": "admin"},
-    #         {"role_id": 2, "name": "player"},
-    #         {"role_id": 3, "name": "coach"},
-    #         {"role_id": 4, "name": "manager"}
-    #     ]
-    # )
-
+    
     # Tournaments
     op.create_table(
         TournamentsModel.__tablename__,
