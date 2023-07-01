@@ -4,9 +4,9 @@
 
 ### Features atuais:
 - Auth (JWT)
-- Cargos (Administrador, Usuário)
-- Usuários
-- Jogador
+- [x] Cargos (Administrador, Usuário)
+- [x] Usuários
+- [x] Jogadores
 - Torneios
 - Partidas
 - Gols
@@ -15,7 +15,7 @@
 - Escalação
 
 ## Proposta do DB
-
+desatualizado!
 ![Proposta de tabelas](/football-club-db.png)
 
 ## Run
