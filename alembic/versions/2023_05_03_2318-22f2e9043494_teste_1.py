@@ -36,17 +36,7 @@ def upgrade() -> None:
         sa.Column("role_id", sa.Integer, primary_key=True),
         sa.Column("name", sa.String(45), nullable=False)
     )
-    """
-    Ex de bulk 
-    op.bulk_insert(
-    account_table,
-    [
-        {"name": "A1", "description": "account 1"},
-        {"name": "A2", "description": "account 2"},
-    ],
-)
-    """
-
+    
     # Tournaments
     op.create_table(
         TournamentsModel.__tablename__,
@@ -165,7 +155,7 @@ def upgrade() -> None:
     op.create_foreign_key(
         'fk_users_role',
         'users', 'roles',
-        ['user_id'], ['role_id'],
+        ['role_id'], ['role_id'],
     )
 
     op.create_foreign_key(
@@ -272,8 +262,7 @@ def downgrade() -> None:
 
     op.drop_table(TournamentsModel.__tablename__)
     op.drop_table(TeamsModel.__tablename__)
-
-    op.drop_table(UsersModel.__tablename__)  # has Roles FK
+    op.drop_table(UsersModel.__tablename__)
     op.drop_table(PlayersModel.__tablename__)
     op.drop_table(MatchesModel.__tablename__)
     op.drop_table(AssistsModel.__tablename__)
