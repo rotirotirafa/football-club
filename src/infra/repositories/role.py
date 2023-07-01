@@ -3,7 +3,7 @@ from typing import List
 from sqlalchemy.orm import Session
 
 from src.domain.v1.roles.model import RolesModel
-from src.schemas.role import RoleSchema, RoleUpdateSchemaRequest
+from src.schemas.roles import RoleSchema, RoleUpdateSchemaRequest
 
 
 class RolesRepository:
