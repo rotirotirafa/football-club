@@ -29,11 +29,9 @@ class PlayersModel(Base):
     # FK USER_ID, TEAM_ID, GOALS
     user_id = Column(ForeignKey("users.user_id"), nullable=False)
     team_id = Column(ForeignKey("teams.team_id"), nullable=True)
-    goals_id = Column(ForeignKey("goals.goal_id"), nullable=True)
 
     user = relationship(UsersModel, foreign_keys=[user_id])
     teams = relationship(TeamsModel, foreign_keys=[team_id])
-    goals = relationship(GoalsModel, foreign_keys=[goals_id])
 
 
 
