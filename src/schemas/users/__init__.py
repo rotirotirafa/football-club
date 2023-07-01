@@ -1,8 +1,6 @@
-from typing import Optional, List
+from typing import Optional
 from datetime import datetime
 from pydantic import BaseModel
-
-from src.schemas.role import RoleSchema
 
 
 class UsersSchema(BaseModel):

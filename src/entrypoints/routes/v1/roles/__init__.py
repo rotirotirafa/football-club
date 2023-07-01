@@ -5,7 +5,7 @@ from fastapi.responses import ORJSONResponse
 from sqlalchemy.orm import Session
 
 from src.infra.adapters.database.make_session import get_db
-from src.schemas.role import RoleSchema, RoleUpdateSchemaRequest
+from src.schemas.roles import RoleSchema, RoleUpdateSchemaRequest
 from src.usecases.roles import RolesUseCase
 from src.utils.logs import Logs
 
