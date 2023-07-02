@@ -10,8 +10,7 @@
 - Torneios
 - Partidas
 - Gols
-- Cartões Vermelhos
-- Cartões Amarelos
+- Cartões (vermelhos e amarelos)
 - Escalação
 
 ## Proposta do DB
