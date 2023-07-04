@@ -10,8 +10,7 @@ from src.usecases.players import PlayersUseCase
 from src.utils.logs import Logs
 
 PlayersRoute = APIRouter(
-    prefix='/players',
-    tags=["Players"],
+    prefix='/players'
 )
 
 

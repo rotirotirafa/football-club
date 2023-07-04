@@ -2,6 +2,7 @@ from typing import Any, List
 
 from fastapi import APIRouter, Depends
 from fastapi.responses import ORJSONResponse
+
 from sqlalchemy.orm import Session
 
 from src.infra.adapters.database.make_session import get_db
