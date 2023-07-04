@@ -10,8 +10,7 @@ from src.usecases.users import UsersUseCase
 from src.utils.logs import Logs
 
 UsersRoute = APIRouter(
-    prefix='/users',
-    tags=["Users"],
+    prefix='/users'
 )
 
 

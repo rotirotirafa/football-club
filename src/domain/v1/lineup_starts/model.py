@@ -13,6 +13,8 @@ class LineUpStartsModel(Base):
 
     lineup_id = Column(ForeignKey("lineups.lineup_id"), nullable=False)
     player_id = Column(ForeignKey("players.player_id"), nullable=False)
-
+    """
+    Mapper posições, X e Y do "campinho" no front
+    """
     created_date = Column(DateTime, default=datetime.now(), nullable=True)
     updated_date = Column(DateTime, default=datetime.now(), nullable=True)
