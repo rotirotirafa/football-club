@@ -11,8 +11,8 @@ class TeamsModel(Base):
     team_id = Column(Integer, primary_key=True, index=True)
 
     name = Column(String(45))
-    image_url = Column(String(500))
-    profile_desc = Column(Text)
+    image_url = Column(String(500), nullable=True)
+    profile_desc = Column(Text, nullable=True)
 
     created_date = Column(DateTime, default=datetime.now(), nullable=True)
     updated_date = Column(DateTime, default=datetime.now(), nullable=True)
