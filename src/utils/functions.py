@@ -1,4 +1,12 @@
+from datetime import datetime
+import datetime as DateTime
+
 import bcrypt
+
+
+def get_trial_date_expiration(date: datetime) -> datetime:
+    trial_expires = date + DateTime.timedelta(days=7)
+    return trial_expires
 
 
 def to_camel(string: str) -> str:
