@@ -21,6 +21,7 @@ class PlayersModel(Base):
     profile_desc = Column(Text, nullable=True)
     main_position = Column(String(30))
     secondary_position = Column(String(30))
+    age = Column(Integer, nullable=True)
     signed = Column(Boolean, default=False)
 
     created_date = Column(DateTime, default=datetime.now(), nullable=True)
