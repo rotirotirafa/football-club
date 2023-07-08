@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, status, HTTPException
+from fastapi import APIRouter, Depends, status, HTTPException, Response
 from fastapi.responses import ORJSONResponse
 from sqlalchemy.orm import Session
 
@@ -67,15 +67,22 @@ def update_team(team_id: int, payload: TeamSchemaUpdate, db: Session = Depends(g
         raise ex
 
 
-@TeamsRoute.delete('/{team_id}')
-def delete_team(team_id: int, db: Session = Depends(get_db)) -> ORJSONResponse:
+@TeamsRoute.delete('/{team_id}', status_code=200)
+def delete_team(team_id: int, db: Session = Depends(get_db)) -> ORJSONResponse or HTTPException:
     try:
         team_use_case = TeamsUseCase(db)
         team_use_case.delete_team(team_id)
         return ORJSONResponse({'message': 'Deletado com sucesso'})
 
     except HTTPException as ex:
-        return ORJSONResponse({'message': ex.detail})
+        # TODO logs EX
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f'Não foi possível deletar',
+        )
 
     except Exception as ex:
-        raise ex
+        raise HTTPException(
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            detail='Error'
+        )
