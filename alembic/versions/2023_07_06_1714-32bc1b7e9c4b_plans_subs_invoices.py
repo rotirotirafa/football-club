@@ -24,9 +24,9 @@ def upgrade() -> None:
     op.create_table(
         PlansModel.__tablename__,
         sa.Column("plan_id", sa.Integer, primary_key=True),
-        sa.Column("plan_name", sa.String(50), nullable=False),
-        sa.Column("plan_description", sa.String(500), nullable=True),
-        sa.Column("plan_price", sa.DECIMAL, nullable=False)
+        sa.Column("name", sa.String(50), nullable=False),
+        sa.Column("description", sa.String(500), nullable=True),
+        sa.Column("price", sa.DECIMAL, nullable=False)
     )
 
     op.create_table(

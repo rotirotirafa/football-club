@@ -15,5 +15,7 @@ class MatchesModel(Base):
     team_away_id = Column(ForeignKey("teams.team_id"), nullable=False)
     tournament_id = Column(ForeignKey("tournaments.tournament_id"), nullable=True)
 
+    match_date = Column(DateTime, nullable=True)
+
     created_date = Column(DateTime, default=datetime.now(), nullable=True)
     updated_date = Column(DateTime, default=datetime.now(), nullable=True)
