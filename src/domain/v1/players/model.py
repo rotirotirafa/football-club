@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 
 from sqlalchemy import Column, Integer, String, DateTime, Text, Boolean, ForeignKey
 
-from src.domain.v1.teams.model import TeamsModel
+from src.domain.v1.team_management.teams import TeamsModel
 from src.domain.v1.users.model import UsersModel
 from src.infra.adapters.database.base import Base
 
@@ -21,6 +21,7 @@ class PlayersModel(Base):
     profile_desc = Column(Text, nullable=True)
     main_position = Column(String(30))
     secondary_position = Column(String(30))
+    age = Column(Integer, nullable=True)
     signed = Column(Boolean, default=False)
 
     created_date = Column(DateTime, default=datetime.now(), nullable=True)

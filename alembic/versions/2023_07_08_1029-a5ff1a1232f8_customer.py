@@ -8,7 +8,7 @@ Create Date: 2023-07-08 10:29:45.708715
 from alembic import op
 import sqlalchemy as sa
 
-from src.domain.v1.customer.model import CustomerModel
+from src.domain.v1.management.customer import CustomersModel
 
 # revision identifiers, used by Alembic.
 revision = 'a5ff1a1232f8'
@@ -19,7 +19,7 @@ depends_on = None
 
 def upgrade() -> None:
     op.create_table(
-        CustomerModel.__tablename__,
+        CustomersModel.__tablename__,
         sa.Column("customer_id", sa.Integer, primary_key=True),
         sa.Column("name", sa.String(255), nullable=True),
         sa.Column("image_url", sa.String(500), nullable=True),
@@ -42,4 +42,4 @@ def upgrade() -> None:
 
 def downgrade() -> None:
     op.drop_constraint('fk_customers_users', 'customers', type_='foreignkey')
-    op.drop_table(CustomerModel.__tablename__)
+    op.drop_table(CustomersModel.__tablename__)

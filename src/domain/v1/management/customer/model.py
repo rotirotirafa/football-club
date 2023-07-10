@@ -7,7 +7,7 @@ from src.domain.v1.users.model import UsersModel
 from src.infra.adapters.database.base import Base
 
 
-class CustomerModel(Base):
+class CustomersModel(Base):
 
     __tablename__ = "customers"
 

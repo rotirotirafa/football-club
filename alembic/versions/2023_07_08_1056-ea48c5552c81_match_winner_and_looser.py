@@ -8,7 +8,7 @@ Create Date: 2023-07-08 10:56:12.007178
 from alembic import op
 import sqlalchemy as sa
 
-from src.domain.v1.matches.model import MatchesModel
+from src.domain.v1.team_management.matches import MatchesModel
 
 # revision identifiers, used by Alembic.
 revision = 'ea48c5552c81'
