@@ -8,8 +8,8 @@ Create Date: 2023-07-08 11:23:11.297995
 from alembic import op
 import sqlalchemy as sa
 
-from src.domain.v1.customer.model import CustomersModel
-from src.domain.v1.subscriptions.model import SubscriptionsModel
+from src.domain.v1.management.customer import CustomersModel
+from src.domain.v1.management.subscriptions import SubscriptionsModel
 
 # revision identifiers, used by Alembic.
 revision = '67eb1d6bdf72'

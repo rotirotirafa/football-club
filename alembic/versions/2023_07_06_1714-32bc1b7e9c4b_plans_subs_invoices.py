@@ -8,9 +8,9 @@ Create Date: 2023-07-06 17:14:41.423605
 from alembic import op
 import sqlalchemy as sa
 
-from src.domain.v1.invoices.model import InvoicesModel
-from src.domain.v1.plans.model import PlansModel
-from src.domain.v1.subscriptions.model import SubscriptionsModel
+from src.domain.v1.management.invoices.model import InvoicesModel
+from src.domain.v1.management.plans.model import PlansModel
+from src.domain.v1.management.subscriptions import SubscriptionsModel
 
 # revision identifiers, used by Alembic.
 revision = '32bc1b7e9c4b'

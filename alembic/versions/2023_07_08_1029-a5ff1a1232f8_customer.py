@@ -8,7 +8,7 @@ Create Date: 2023-07-08 10:29:45.708715
 from alembic import op
 import sqlalchemy as sa
 
-from src.domain.v1.customer.model import CustomersModel
+from src.domain.v1.management.customer import CustomersModel
 
 # revision identifiers, used by Alembic.
 revision = 'a5ff1a1232f8'

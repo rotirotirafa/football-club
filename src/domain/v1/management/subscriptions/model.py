@@ -3,8 +3,8 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 
-from src.domain.v1.customer.model import CustomersModel
-from src.domain.v1.plans.model import PlansModel
+from src.domain.v1.management.customer.model import CustomersModel
+from src.domain.v1.management.plans.model import PlansModel
 from src.domain.v1.users.model import UsersModel
 from src.infra.adapters.database.base import Base
 from src.utils.functions import get_trial_date_expiration

@@ -3,7 +3,7 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, DECIMAL, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 
-from src.domain.v1.subscriptions.model import SubscriptionsModel
+from src.domain.v1.management.subscriptions.model import SubscriptionsModel
 from src.infra.adapters.database.base import Base
 
 
