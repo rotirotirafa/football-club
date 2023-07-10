@@ -4,7 +4,7 @@ from sqlalchemy.orm import relationship
 
 from sqlalchemy import Column, Integer, String, DateTime, Text, Boolean, ForeignKey
 
-from src.domain.v1.teams.model import TeamsModel
+from src.domain.v1.team_management.teams import TeamsModel
 from src.domain.v1.users.model import UsersModel
 from src.infra.adapters.database.base import Base
 

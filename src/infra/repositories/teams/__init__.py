@@ -3,7 +3,7 @@ from typing import List
 
 from sqlalchemy.orm import Session
 
-from src.domain.v1.teams.model import TeamsModel
+from src.domain.v1.team_management.teams.model import TeamsModel
 from src.schemas.teams import TeamSchema, TeamSchemaCreateRequest, TeamSchemaUpdate
 
 

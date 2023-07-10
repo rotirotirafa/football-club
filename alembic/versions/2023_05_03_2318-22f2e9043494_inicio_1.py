@@ -10,16 +10,16 @@ from datetime import datetime
 from alembic import op
 import sqlalchemy as sa
 
-from src.domain.v1.assists.models import AssistsModel
-from src.domain.v1.cards.model import CardsModel
-from src.domain.v1.goals.model import GoalsModel
-from src.domain.v1.lineup_starts.model import LineUpStartsModel
-from src.domain.v1.lineups.model import LineUpsModel
-from src.domain.v1.matches.model import MatchesModel
+from src.domain.v1.team_management.assists.models import AssistsModel
+from src.domain.v1.team_management.cards.model import CardsModel
+from src.domain.v1.team_management.goals import GoalsModel
+from src.domain.v1.team_management.lineup_starts import LineUpStartsModel
+from src.domain.v1.team_management.lineups import LineUpsModel
+from src.domain.v1.team_management.matches import MatchesModel
 from src.domain.v1.players.model import PlayersModel
 from src.domain.v1.roles.model import RolesModel
-from src.domain.v1.teams.model import TeamsModel
-from src.domain.v1.tournaments.model import TournamentsModel
+from src.domain.v1.team_management.teams import TeamsModel
+from src.domain.v1.team_management.tournaments import TournamentsModel
 from src.domain.v1.users.model import UsersModel
 
 # revision identifiers, used by Alembic.
