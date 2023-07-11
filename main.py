@@ -17,15 +17,6 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
-sentry_sdk.init(
-    dsn="https://35b55970326e4017aae536df3b07ce64@o4505484767068160.ingest.sentry.io/4505484768575488",
-
-    # Set traces_sample_rate to 1.0 to capture 100%
-    # of transactions for performance monitoring.
-    # We recommend adjusting this value in production,
-    traces_sample_rate=1.0,
-)
-
 
 origins = [
     "http://localhost",
@@ -41,10 +32,6 @@ app.add_middleware(
 )
 
 app.include_router(api_router)
-
-@app.get("/sentry-debug")
-async def trigger_error():
-    division_by_zero = 1 / 0
 
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
